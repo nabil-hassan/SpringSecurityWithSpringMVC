@@ -1,4 +1,2 @@
-# SpringMVCJavaConfig
-A Spring MVC application skeleton, written exclusively using Java Config - as opposed to XML-based config.
-
-This project will be forked to provide a foundation for further web application development on this hub.
+# SpringSecurityWithSpringMVC
+Demonstration of how to integrate Spring security framework with a Spring MVC web application.

@@ -7,8 +7,16 @@
 
     <link href="${application_css}" rel="stylesheet">
     <link href="${default_css}" rel="stylesheet">
-</head>
-<body>
 
+    <style>
+        .header {background-color: black; padding: 1em 1em 1em 1em}
+        .header h1 {color: white; text-align: center;}
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Spring MVC Apache Shiro Demo</h1>
+    </div>
 </body>
 </html>
