@@ -1,15 +1,18 @@
 package net.example.config.web;
 
 import net.example.config.context.PersistenceContext;
+import net.example.config.context.SecurityContext;
 import net.example.config.context.ServiceContext;
 import net.example.config.context.WebContext;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.*;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 /**
  * Initialiser for the web application - uses Java Servlet 3 approach to web app configuration.
@@ -29,6 +32,7 @@ public class AppWebIntializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.setServletContext(servletContext);
         appContext.register(PersistenceContext.class);
+        appContext.register(SecurityContext.class);
         appContext.register(ServiceContext.class);
         appContext.register(WebContext.class);
         servletContext.addListener(new ContextLoaderListener(appContext));
