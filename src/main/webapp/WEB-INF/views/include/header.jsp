@@ -16,7 +16,7 @@
 
 <body>
     <div class="header">
-        <h1>Spring MVC Apache Shiro Demo</h1>
+        <h1>Spring MVC Spring Security</h1>
     </div>
 </body>
 </html>

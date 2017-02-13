@@ -14,11 +14,10 @@
 <div class="main">
     <h1>Where to?</h1>
 
-     <a href="${logout_url}">Logout</a>
-    <%--<ul>--%>
-        <%--<li> <a href="customerList">Customer List</a> </li>--%>
-        <%--<li> <a href="customerForm">Add Customer</a> </li>--%>
-    <%--</ul>--%>
+    <ul class="anchorList">
+        <li> <a href="customerList">Customer List</a> </li>
+        <li> <a href="customerForm">Add Customer</a> </li>
+    </ul>
 </div>
 
 </body>
