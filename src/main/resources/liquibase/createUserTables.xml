@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- ====================================================================================
+         Title: createUserTables.xml
+
+         Description: creates the database tables required by Spring Security.
+
+         Date: 13/02/2017
+         ==================================================================================== -->
+
+    <!--
+        CS001: create the users table
+    -->
+    <changeSet id="createUsersTable" author="admin">
+        <preConditions>
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+
+        <comment>Create the users table, which holds details of the system users.</comment>
+
+        <createTable schemaName="public" tableName="users">
+            <column name="id" type="numeric(5)" autoIncrement="true"/>
+            <column name="username" type="varchar2(100)"/>
+            <column name="password" type="varchar2(100)"/>
+            <column name="password_salt" type="varchar2(100)"/>
+            <column name="email" type="varchar2(100)"/>
+            <column name="enabled" type="tinyint"/>
+        </createTable>
+
+        <addPrimaryKey tableName="users" columnNames="id" constraintName="pk_users_id"/>
+    </changeSet>
+
+    <!--
+        CS002: create the roles table
+    -->
+    <changeSet id="createRolesTable" author="admin">
+        <preConditions>
+            <not>
+                <tableExists tableName="roles"/>
+            </not>
+        </preConditions>
+
+        <comment>Creates the roles table, which holds security role definitions.</comment>
+
+        <createTable tableName="roles">
+            <column name="id" type="numeric(5)" autoIncrement="true"/>
+            <column name="name" type="varchar2(80)"/>
+            <column name="description" type="varchar2(255)"/>
+        </createTable>
+
+        <addPrimaryKey tableName="roles" columnNames="id" constraintName="pk_roles_id"/>
+    </changeSet>
+
+
+    <!--
+        CS003: create the user_roles table - this will store associate users with roles
+    -->
+    <changeSet id="createUserRolesTable" author="admin">
+        <preConditions>
+            <not>
+                <tableExists tableName="user_roles"/>
+            </not>
+        </preConditions>
+
+        <comment>Create the user roles table, which associates users with security roles.</comment>
+
+        <createTable schemaName="public" tableName="user_roles">
+            <column name="id" type="numeric(5)" autoIncrement="true"/>
+            <column name="user_id" type="numeric(5)"/>
+            <column name="role_id" type="numeric(5)"/>
+        </createTable>
+
+        <addPrimaryKey tableName="user_roles" columnNames="id" constraintName="pk_user_roles_id"/>
+
+        <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="user_id"
+                                 constraintName="fk_user_roles_user_id" referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="role_id"
+                                 constraintName="fk_user_roles_role_id" referencedTableName="roles"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

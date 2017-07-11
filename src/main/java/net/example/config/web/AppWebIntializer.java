@@ -4,6 +4,8 @@ import net.example.config.context.PersistenceContext;
 import net.example.config.context.SecurityContext;
 import net.example.config.context.ServiceContext;
 import net.example.config.context.WebContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -27,6 +29,7 @@ public class AppWebIntializer implements WebApplicationInitializer {
      */
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // Bootstrap Spring IOC
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();

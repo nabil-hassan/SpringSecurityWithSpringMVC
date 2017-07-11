@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- ====================================================================================
+         Title: createUserTables.xml
+
+         Description: populates the database tables required by Spring Security with initial data.
+
+         Date: 13/02/2017
+        ==================================================================================== -->
+
+    <!--
+        Insert the users records
+    -->
+    <changeSet id="insertUsers" author="admin">
+        <preConditions>
+            <tableExists tableName="users"/>
+        </preConditions>
+
+        <sql>
+        insert into users(username, password, enabled, email)
+        values('admin', '$2a$10$yFZ6/kDnG/nQr4B/6gSz.uIbKWgsjHwwiFgeT3brAY7zAOztcpj1C', 1, 'admin@sys.com');
+
+        insert into users(username, password, enabled, email)
+        values('user', '$2a$10$ttL59F5jFTktRZ7H4qp20.HyzVTkqhXVM3YJvkk8kuZvVoUDCt.Ta', 1, 'user@sys.com');
+
+        insert into users(username, password, enabled, email)
+        values('guest', '$2a$10$aahcpCDoeUYrMfP.cDyGa.rBU3ifwdXR2H4i1Rh.47JxwI8kbqr0.', 1, 'guest@sys.com');
+        </sql>
+    </changeSet>
+
+    <!--
+        Insert the roles records
+    -->
+    <changeSet id="insertRoles" author="admin">
+        <preConditions>
+            <tableExists tableName="roles"/>
+        </preConditions>
+
+        <sql>
+        insert into roles(name, description)
+        values('view', 'allows user to view data');
+
+        insert into roles(name, description)
+        values('create', 'allows user to create data');
+
+        insert into roles(name, description)
+        values('edit', 'allows user to edit data');
+
+        insert into roles(name, description)
+        values('delete', 'allows user to delete data');
+        </sql>
+    </changeSet>
+
+    <!--
+        Insert the user roles records
+    -->
+    <changeSet id="insertUserRoles" author="admin">
+        <preConditions>
+            <tableExists tableName="user_roles"/>
+        </preConditions>
+
+        <sql>
+        insert  into user_roles(user_id, role_id)
+        select  u.id,
+                r.id
+        from    users u,
+                roles   r
+        where   u.username in ('admin', 'user');
+
+        insert  into user_roles(user_id, role_id)
+        select  u.id,
+        r.id
+        from    users u,
+                roles   r
+        where   u.username = 'guest'
+        and     r.name = 'view';
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

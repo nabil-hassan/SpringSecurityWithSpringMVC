@@ -3,8 +3,11 @@ package net.example.service;
 import net.example.dao.UserDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UserService {
+public class UserService implements UserDetailsService {
     
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private UserDAO userDAO;
@@ -13,25 +16,8 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    /**
-     * Confirms whether the user is authenticated.
-     */
-    public boolean userIsAuthenticated() {
-        return false;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDAO.findUserByUsername(username);
     }
-
-    /**
-     * Attempts to login user; throws an Exception if unable to.
-     */
-    public void loginUser(String username, String password, Boolean rememberUser) throws Exception {
-
-    }
-
-    /**
-     * Creates a new user account with the specified credentials.
-     */
-    public void createUser(String username, String password) throws Exception {
-
-    }
-
 }

@@ -2,7 +2,7 @@
 div.main  {text-align: center;}
 .errorMessage {color: red; font-style: italic;}
 
-div.smallForm {margin: 1em 0em 1em 1em; padding:0.3em 1em 1em 1em; background-color:#ffffff;
+div.smallForm {margin: 1em 0em 1em 1em; padding:2em 1em 1em 1em; background-color:#ffffff;
     margin-right: auto; margin-left: auto; width: 50%; }
 
 div.formField {margin-bottom: 1em;}

@@ -29,46 +29,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
-     * Displays the application login page.
-     *
-     * @return the login page path
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String showLoginPage() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/public", method = RequestMethod.GET)
-    public String showPublicPage() {
-        return "public";
-    }
-
-    @RequestMapping(value = "/private", method = RequestMethod.GET)
-    public String showPrivatePage() {
-        return "private";
-    }
-
-    /**
-     * Create the specified user. If an error occurs, display to the user, otherwise redirect to welcome page.
-     */
-    @RequestMapping(value = "/createUserForm/submit", method = RequestMethod.POST)
-    public String doCreateUser(@RequestParam String username,
-            @RequestParam String password,
-            @RequestParam(required = false) Boolean rememberMe,
-            RedirectAttributes redirectAttributes) throws SQLException {
-        LOG.debug("Create user request received for user: {}", username);
-
-        try {
-            userService.createUser(username, password);
-            userService.loginUser(username, password, rememberMe);
-            return "redirect:/";
-        } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute(CREATE_ERROR, ex.getMessage());
-            redirectAttributes.addFlashAttribute("newUsrUsername", username);
-            redirectAttributes.addFlashAttribute("newUsrPassword", password);
-            return "redirect:/login";
-        }
+    @RequestMapping(method = RequestMethod.GET, path = "/login")
+    public String login() {
+        return "/login";
     }
 
 }
