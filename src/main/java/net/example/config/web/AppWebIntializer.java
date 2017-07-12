@@ -29,8 +29,6 @@ public class AppWebIntializer implements WebApplicationInitializer {
      */
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-
         // Bootstrap Spring IOC
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.setServletContext(servletContext);

@@ -24,13 +24,13 @@
 
         <sql>
         insert into users(username, password, enabled, email)
-        values('admin', '$2a$10$yFZ6/kDnG/nQr4B/6gSz.uIbKWgsjHwwiFgeT3brAY7zAOztcpj1C', 1, 'admin@sys.com');
+        values('admin', '$2a$10$JF/of/y0dlhEeGtzKvusGeYR2OQB9dZZlwfYUHrlJyZA4kAF2.dxK', 1, 'admin@sys.com');
 
         insert into users(username, password, enabled, email)
-        values('user', '$2a$10$ttL59F5jFTktRZ7H4qp20.HyzVTkqhXVM3YJvkk8kuZvVoUDCt.Ta', 1, 'user@sys.com');
+        values('user', '$2a$10$JF/of/y0dlhEeGtzKvusGeYR2OQB9dZZlwfYUHrlJyZA4kAF2.dxK', 1, 'user@sys.com');
 
         insert into users(username, password, enabled, email)
-        values('guest', '$2a$10$aahcpCDoeUYrMfP.cDyGa.rBU3ifwdXR2H4i1Rh.47JxwI8kbqr0.', 1, 'guest@sys.com');
+        values('guest', '$2a$10$JF/of/y0dlhEeGtzKvusGeYR2OQB9dZZlwfYUHrlJyZA4kAF2.dxK', 1, 'guest@sys.com');
         </sql>
     </changeSet>
 
