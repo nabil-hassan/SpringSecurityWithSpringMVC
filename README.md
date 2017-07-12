@@ -7,8 +7,8 @@ Users are: guest, user, admin, all with the highly-secure password: 'password'.
 
 Todo:
 
-Salting of passwords
-Complete the forms
-Role-based access
+* Salting of passwords
+* Complete the forms
+* Role-based access
 
 Coding to be completed when life permits!
