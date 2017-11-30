@@ -16,6 +16,8 @@ import java.sql.*;
 public class UserDAO {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
+    
+    //TODO: merge queries
     private static final String GET_USER_DETAILS_QUERY
             = "SELECT u.id, u.username, u.password, u.enabled, u.email FROM USERS u WHERE u.username = ?";
     private static final String GET_AUTHORITIES_QUERY
